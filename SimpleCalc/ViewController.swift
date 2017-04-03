@@ -79,8 +79,8 @@ class ViewController: UIViewController {
             returnCounter = 0
             operation = ""
         case "fact":
-            for index in inputArray {
-                factorial = factorial * index
+            for i in 1...inputArray[0] { // from 1 to 5+1
+                factorial = factorial * i
             }
             result.text = String(factorial)
             
