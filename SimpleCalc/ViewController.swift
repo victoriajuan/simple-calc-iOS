@@ -114,7 +114,7 @@ class ViewController: UIViewController {
             case "+":
                 tempResult = inputNumber1 + inputNumber2
             case "-":
-                tempResult = inputNumber1 - inputNumber2
+                tempResult = (inputNumber1 - inputNumber2)
             case "*":
                 tempResult = inputNumber1 * inputNumber2
             case "/":
