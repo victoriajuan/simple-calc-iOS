@@ -13,8 +13,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var result: UILabel!
     var MiddleOfTyping = false
     var factorial = 1
-    var inputArray = [Int]()
-    var tempResult = 0
+    var inputArray = [Double]()
+    var tempResult = 0.0
     var operation = ""
     
     @IBAction func touchDigit(_ sender: UIButton) {
@@ -32,20 +32,20 @@ class ViewController: UIViewController {
     @IBAction func performOperation(_ sender: UIButton) {
         let symbol = sender.currentTitle! //store the input operation
         operation = symbol
-        inputArray.append((Int)(result.text!)!)
+        inputArray.append((Double)(result.text!)!)
         
         switch symbol {
         case "+", "-", "*", "/", "%", "count", "avg":
             result.text = operation
         case "fact":
-            for i in 1...inputArray[0] { // from 1 to 5+1
+            for i in 1...(Int)(inputArray[0]) { // from 1 to 5+1
                 factorial = factorial * i
             }
             result.text = String(factorial)
             
             MiddleOfTyping = false
             factorial = 1
-            inputArray = [Int]()
+            inputArray = [Double]()
             tempResult = 0
             operation = ""
         default:
@@ -55,7 +55,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func returnOperation(_ sender: UIButton) {
-        inputArray.append((Int)(result.text!)!)
+        inputArray.append((Double)(result.text!)!)
         
         switch operation {
         case "+":
@@ -67,15 +67,15 @@ class ViewController: UIViewController {
         case "/":
             tempResult = inputArray[0] / inputArray[1]
         case "%":
-            tempResult = inputArray[0] % inputArray[1]
+            tempResult = Double((Int)(inputArray[0]) % (Int)(inputArray[1]))
         case "count":
-            tempResult = inputArray.count
+            tempResult = Double(inputArray.count)
         case "avg":
-            var temp = 0
+            var temp = 0.0
             for i in 1...inputArray.count {
                 temp = temp + inputArray[i-1]
             }
-            tempResult = temp / inputArray.count
+            tempResult = Double(temp / (Double)(inputArray.count))
         default:
             break
         }
@@ -83,7 +83,7 @@ class ViewController: UIViewController {
         
         MiddleOfTyping = false
         factorial = 1
-        inputArray = [Int]()
+        inputArray = [Double]()
         tempResult = 0
         operation = ""
     }
